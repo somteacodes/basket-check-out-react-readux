@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Button } from "./Button";
-import { ProductItemType } from "./ProductList";
+ 
 
 type ProductItemProps={
     item:ProductItemType
