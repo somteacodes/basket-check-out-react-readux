@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUnreliableProducts } from "../store/modules/products/productsSlice";
+import { getProducts } from "../store/modules/products/productsSlice";
 import { AppDispatch, RootState } from "../store/store";
 import { Button } from "./Button";
 import Loading from "./Loading/Loading";
@@ -13,12 +13,13 @@ export const ProductList = () => {
   const {
     products: { loading },
   } = useSelector((state: RootState) => state);
-
-useEffect(()=>{
-    dispatch(getUnreliableProducts());
-},[])
-
   const dispatch = useDispatch<AppDispatch>();
+  
+useEffect(()=>{
+    dispatch(getProducts());
+},[dispatch])
+
+ 
   return (
     <main>
       {loading ? (
@@ -39,7 +40,7 @@ useEffect(()=>{
               <Button
                 background="bg-yellow-300"
                 color="text-black"
-                onClick={() => dispatch(getUnreliableProducts())}
+                onClick={() => dispatch(getProducts())}
               >
                 Retry
               </Button>

@@ -1,10 +1,29 @@
 import { FC } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct, removeProduct } from "../store/modules/cart/cartSlice";
+import { AppDispatch, RootState } from "../store/store";
 import { Button } from "./Button";
 
 type ProductItemProps = {
   item: ProductItemType;
 };
 export const ProductItem: FC<ProductItemProps> = ({ item }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+
+  const itemAmount = useSelector((state: RootState) =>
+    state.cart.reduce((sumAmount:any, item: ProductItemType)=>{
+        sumAmount[item.sku]=item.amount
+        return sumAmount;
+    },{})
+  )
+
+  const addToCartHandler = (item: ProductItemType) => {
+    dispatch(addProduct(item));
+  };
+  const removeFromCartHandler = (item: ProductItemType) => {
+    dispatch(removeProduct(item));
+  };
   return (
     <div
       className="bg-white rounded-md  p-6 drop-shadow-md flex items-center lg:space-x-6 space-y-6 lg:space-y-0 flex-col lg:flex-row "
@@ -24,19 +43,27 @@ export const ProductItem: FC<ProductItemProps> = ({ item }) => {
         </div>
       </div>
 
-      <div className="p-3 rounded-full bg-yellow-400 h-10 w-10 grid place-content-center">1</div>
+      {itemAmount[item.sku] && (
+        <div className="p-3 rounded-full bg-yellow-400 h-10 w-10 grid place-content-center">
+          {itemAmount[item.sku]}
+        </div>
+      )}
       <div className="flex lg:flex-col items-center lg:space-y-4 space-x-4 lg:space-x-0">
         <Button
+          data-testid={`add-${item.sku}`}
           background="bg-yellow-300"
           color="text-black"
-          onClick={() => console.log(`Add one item to ${item.sku}`)}
+          disabled={itemAmount[item.sku] >= item.basketLimit && true}
+          onClick={() => addToCartHandler(item)}
         >
           Add to basket
         </Button>
         <Button
+         data-testid={`remove-${item.sku}`}
           background="bg-red-800"
           color="text-white"
-          onClick={() => console.log(`remove one item from ${item.sku}`)}
+          disabled={!itemAmount[item.sku] && true}
+          onClick={() => removeFromCartHandler(item)}
         >
           Remove
         </Button>

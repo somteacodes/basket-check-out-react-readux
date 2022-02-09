@@ -4,5 +4,6 @@ type ProductItemType={
     description: string,
     price: number,
     basketLimit: number,
-    image?:string
+    image?:string,
+    amount?:number
 }

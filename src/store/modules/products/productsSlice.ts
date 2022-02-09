@@ -34,6 +34,17 @@ export const productsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+    .addCase(getProducts.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.products = action.payload;
+      })
+      .addCase(getProducts.rejected, (state, action) => {
+        state.loading = false; 
+      })
+    //   action creators for getUnreliableProducts
       .addCase(getUnreliableProducts.pending, (state) => {
         state.loading = true;
       })
@@ -42,8 +53,7 @@ export const productsSlice = createSlice({
         state.products = action.payload;
       })
       .addCase(getUnreliableProducts.rejected, (state, action) => {
-        state.loading = false;
-        // state.products = action.payload;
+        state.loading = false; 
       });
   },
 });
