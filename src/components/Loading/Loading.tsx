@@ -1,22 +1,18 @@
-import { FC } from "react"
-// import { useSelector } from "react-redux"
-import './Loading.css'
-type LoadingProp={
-  show?:false
-}
-const Loading:FC<LoadingProp> = ({show} ) => {
-  // const {global:{loading}} = useSelector((state:any) => state)
-  const loading=false;
- 
-    return (
-    <>
-    {show? <div className="loadingContainer">
-          <div className="loader"></div> 
-    </div>: loading && <div className="loadingContainer">
-          <div className="loader"></div> 
-    </div>}
-    </>
-    )
-}
+import { FC } from "react";
 
-export default Loading
+type LoadingProp = {
+  show: boolean;
+};
+const Loading: FC<LoadingProp> = ({ show }) => {
+  return (
+    <>
+      {show && (
+        <div className=" bg-black bg-opacity-50 w-screen h-screen z-[99999]  grid place-items-center ">
+          <div className="  w-10 h-10 rounded-full bg-yellow-200 animate-ping "></div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default Loading;
