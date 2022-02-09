@@ -11,14 +11,22 @@ const initialState: ProductsSlice = {
   loading: false,
 };
 
-export const getProducts = createAsyncThunk(
-  "products/fetchProducts",
+export const getUnreliableProducts = createAsyncThunk(
+  "products/fetchUnrealiableProducts",
   async () => {
     const { data } = await api.get("/unreliable_products");
     console.log(data);
     return data;
   }
 );
+export const getProducts = createAsyncThunk(
+    "products/fetchProducts",
+    async () => {
+      const { data } = await api.get("/products");
+      console.log(data);
+      return data;
+    }
+  );
 
 export const productsSlice = createSlice({
   name: "products",
@@ -26,14 +34,14 @@ export const productsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getProducts.pending, (state) => {
+      .addCase(getUnreliableProducts.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getProducts.fulfilled, (state, action) => {
+      .addCase(getUnreliableProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.products = action.payload;
       })
-      .addCase(getProducts.rejected, (state, action) => {
+      .addCase(getUnreliableProducts.rejected, (state, action) => {
         state.loading = false;
         // state.products = action.payload;
       });
