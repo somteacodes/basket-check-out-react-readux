@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct, removeProduct } from "../store/modules/cart/cartSlice";
+import { addProduct, removeOneProduct } from "../store/modules/cart/cartSlice";
 import { AppDispatch, RootState } from "../store/store";
 import { Button } from "./Button";
 
@@ -10,20 +10,19 @@ type ProductItemProps = {
 export const ProductItem: FC<ProductItemProps> = ({ item }) => {
   const dispatch = useDispatch<AppDispatch>();
 
-
   const itemAmount = useSelector((state: RootState) =>
-    state.cart.reduce((sumAmount:any, item: ProductItemType)=>{
-        sumAmount[item.sku]=item.amount
-        return sumAmount;
-    },{})
-  )
+    state.cart.reduce((sumAmount: any, item: ProductItemType) => {
+      sumAmount[item.sku] = item.amount;
+      return sumAmount;
+    }, {})
+  );
 
-  const addToCartHandler = (item: ProductItemType) => {
+  const addToCartHandler = (item: ProductItemType) =>
     dispatch(addProduct(item));
-  };
-  const removeFromCartHandler = (item: ProductItemType) => {
-    dispatch(removeProduct(item));
-  };
+
+  const removeFromCartHandler = (item: ProductItemType) =>
+    dispatch(removeOneProduct(item));
+
   return (
     <div
       className="bg-white rounded-md  p-6 drop-shadow-md flex items-center lg:space-x-6 space-y-6 lg:space-y-0 flex-col lg:flex-row "
@@ -59,7 +58,7 @@ export const ProductItem: FC<ProductItemProps> = ({ item }) => {
           Add to basket
         </Button>
         <Button
-         data-testid={`remove-${item.sku}`}
+          data-testid={`remove-${item.sku}`}
           background="bg-red-800"
           color="text-white"
           disabled={!itemAmount[item.sku] && true}
