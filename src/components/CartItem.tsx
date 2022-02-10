@@ -21,7 +21,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
   const productQuantities = [];
   for (let i = 1; i <= item.basketLimit; i++) {
     productQuantities.push(
-      <option value={i} key={`${i}-${item.sku}`} selected={item.amount === i}>
+      <option value={i} key={`${i}-${item.sku}`} >
         {i}
       </option>
     );
@@ -50,7 +50,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
           </p>
           <div className="flex space-x-4 mt-2">
             <p>Quantity</p>
-            <select onChange={e => quantitySelectHandler(e)}>
+            <select onChange={e => quantitySelectHandler(e)} defaultValue={item.amount}>
               {productQuantities}
             </select>
           </div>

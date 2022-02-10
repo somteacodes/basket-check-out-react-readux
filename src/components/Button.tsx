@@ -18,7 +18,7 @@ export const Button: FC<ButtonProps> = ({
     <button
       className={
         disabled
-          ? "text-center cursor-pointer px-4 py-2 bg-gray-400  text-white font-bold rounded-lg"
+          ? "text-center px-4 py-2 bg-gray-400  text-white font-bold rounded-lg"
           : `text-center cursor-pointer px-4 py-2 ${background} ${color} hover:saturate-150 saturate-100 font-bold rounded-lg`
       }
       onClick={onClick}

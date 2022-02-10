@@ -12,29 +12,34 @@ const initialState: ProductsSlice = {
 };
 
 export const getUnreliableProducts = createAsyncThunk(
-  "products/fetchUnrealiableProducts",
+  "products/getUnreliableProducts",
   async () => {
     const { data } = await api.get("/unreliable_products");
-    console.log(data);
     return data;
   }
 );
 export const getProducts = createAsyncThunk(
-    "products/fetchProducts",
-    async () => {
-      const { data } = await api.get("/products");
-      console.log(data);
-      return data;
-    }
-  );
-
+  "products/getProducts",
+  async () => {
+    const { data } = await api.get("/products");
+    return data;
+  }
+);
+export const checkOutProducts = createAsyncThunk(
+  "products/checkOutProducts",
+  async (body: any) => {
+    const { data } = await api.post("/checkout", body);
+    console.log(data);
+    return data
+  }
+);
 export const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-    .addCase(getProducts.pending, (state) => {
+      .addCase(getProducts.pending, (state) => {
         state.loading = true;
       })
       .addCase(getProducts.fulfilled, (state, action) => {
@@ -42,9 +47,9 @@ export const productsSlice = createSlice({
         state.products = action.payload;
       })
       .addCase(getProducts.rejected, (state, action) => {
-        state.loading = false; 
+        state.loading = false;
       })
-    //   action creators for getUnreliableProducts
+      //   action creators for getUnreliableProducts
       .addCase(getUnreliableProducts.pending, (state) => {
         state.loading = true;
       })
@@ -53,8 +58,21 @@ export const productsSlice = createSlice({
         state.products = action.payload;
       })
       .addCase(getUnreliableProducts.rejected, (state, action) => {
-        state.loading = false; 
-      });
+        state.loading = false;
+      })
+
+      // action creato for checkOutProducts
+      .addCase(checkOutProducts.fulfilled, (state, action) => {
+        state.loading = false;
+      })
+      .addCase(checkOutProducts.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(checkOutProducts.rejected, (state, action) => {
+        state.loading = false;
+      })
+      
+      ;
   },
 });
 
