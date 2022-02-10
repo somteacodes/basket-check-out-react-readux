@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import {
   removeAllProduct,
   updateAmount,
-} from "../store/modules/cart/cartSlice";
-import { AppDispatch } from "../store/store";
+} from "../../store/modules/cart/cartSlice";
+import { AppDispatch } from "../../store/store";
 
-import { Button } from "./Button";
+import { Button } from "../Button/Button";
 
 type CartItemProps = {
   item: ProductItemType;

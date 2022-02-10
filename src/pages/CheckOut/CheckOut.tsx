@@ -1,14 +1,14 @@
 import { ChangeEvent, FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../components/Button";
-import { CartList } from "../components/CartList";
-import Loading from "../components/Loading/Loading";
-import { Notification } from "../components/Notification";
-import { cartItemsCount } from "../store/modules/cart/cartSlice";
-import { checkOutProducts } from "../store/modules/products/productsSlice";
-import { AppDispatch, RootState } from "../store/store";
-import { luhnCheck } from "../utils/luhn_check";
+import { Button } from "../../components/Button/Button";
+import { CartList } from "../../components/CartList/CartList";
+import Loading from "../../components/Loading/Loading";
+import { Notification } from "../../components/Notification/Notification";
+import { cartItemsCount } from "../../store/modules/cart/cartSlice";
+import { checkOutProducts } from "../../store/modules/products/productsSlice";
+import { AppDispatch, RootState } from "../../store/store";
+import { luhnCheck } from "../../utils/luhn_check";
 
 export const CheckOut: FC = () => {
   const [cardNumber, setCardNumber] = useState("");
@@ -16,7 +16,7 @@ export const CheckOut: FC = () => {
   const cartCount = useSelector(cartItemsCount);
   const { cart } = useSelector((state: RootState) => state);
   const canCheckOut = cartCount > 0;
-  const [cardNumberError, setCardNumberError] = useState(true);
+  const [cardNumberError, setCardNumberError] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const {
@@ -65,6 +65,7 @@ export const CheckOut: FC = () => {
               </label>
               <input
                 type="text"
+                data-testid="cardNumber-input"
                 className="my-2 p-2 border rounded-lg w-full"
                 placeholder="XXXXXXXXXXXX"
                 value={cardNumber}
@@ -81,6 +82,7 @@ export const CheckOut: FC = () => {
               <Button
                 background="bg-green-600"
                 color="text-white"
+                testid="checkout"
                 disabled={!canCheckOut}
                 onClick={() => checkOutClickHandler()}
               >
@@ -89,6 +91,7 @@ export const CheckOut: FC = () => {
               <Button
                 background="bg-blue-600"
                 color="text-white"
+                testid="continue-shopping"
                 onClick={() => toProductList()}
               >
                 Continue Shopping

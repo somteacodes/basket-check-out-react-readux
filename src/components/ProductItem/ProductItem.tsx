@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct, removeOneProduct } from "../store/modules/cart/cartSlice";
-import { AppDispatch, RootState } from "../store/store";
-import { Button } from "./Button";
+import { addProduct, removeOneProduct } from "../../store/modules/cart/cartSlice";
+import { AppDispatch, RootState } from "../../store/store";
+import { Button } from "../Button/Button";
 
 type ProductItemProps = {
   item: ProductItemType;
@@ -49,7 +49,7 @@ export const ProductItem: FC<ProductItemProps> = ({ item }) => {
       )}
       <div className="flex lg:flex-col items-center lg:space-y-4 space-x-4 lg:space-x-0">
         <Button
-          data-testid={`add-${item.sku}`}
+          testid={`add-${item.sku}`}
           background="bg-yellow-300"
           color="text-black"
           disabled={itemAmount[item.sku] >= item.basketLimit && true}
@@ -58,7 +58,7 @@ export const ProductItem: FC<ProductItemProps> = ({ item }) => {
           Add to basket
         </Button>
         <Button
-          data-testid={`remove-${item.sku}`}
+          testid={`remove-${item.sku}`}
           background="bg-red-800"
           color="text-white"
           disabled={!itemAmount[item.sku] && true}

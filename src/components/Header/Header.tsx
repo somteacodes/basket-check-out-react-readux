@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { cartItemsCount, totalAmount } from "../store/modules/cart/cartSlice";
+import { cartItemsCount, totalAmount } from "../../store/modules/cart/cartSlice";
 
 export const Header = () => {
   const cartCount = useSelector(cartItemsCount);

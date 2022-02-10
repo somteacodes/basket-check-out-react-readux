@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../store/modules/products/productsSlice";
-import { AppDispatch, RootState } from "../store/store";
-import { Button } from "./Button";
-import Loading from "./Loading/Loading";
-import { ProductItem } from "./ProductItem";
+import {getUnreliableProducts } from "../../store/modules/products/productsSlice";
+import { AppDispatch, RootState } from "../../store/store";
+import { Button } from "../Button/Button";
+import Loading from "../Loading/Loading";
+import { ProductItem } from "../ProductItem/ProductItem";
 
 export const ProductList = () => {
   const {
@@ -16,7 +16,8 @@ export const ProductList = () => {
   const dispatch = useDispatch<AppDispatch>();
   
 useEffect(()=>{
-    dispatch(getProducts());
+    // dispatch(getProducts());
+    dispatch(getUnreliableProducts())
 },[dispatch])
 
  
@@ -40,7 +41,8 @@ useEffect(()=>{
               <Button
                 background="bg-yellow-300"
                 color="text-black"
-                onClick={() => dispatch(getProducts())}
+                // onClick={() => dispatch(getProducts())}
+                onClick={() =>dispatch(getUnreliableProducts())}
               >
                 Retry
               </Button>

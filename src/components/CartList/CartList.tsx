@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
-import { totalAmount } from "../store/modules/cart/cartSlice";
-import { RootState } from "../store/store";
-import { CartItem } from "./CartItem";
+import { totalAmount } from "../../store/modules/cart/cartSlice";
+import { RootState } from "../../store/store";
+import { CartItem } from "../CartItem/CartItem";
 
 export const CartList: FC = () => {
   const { cart } = useSelector((state: RootState) => state);
