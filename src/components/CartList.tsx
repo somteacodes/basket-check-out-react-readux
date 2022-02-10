@@ -9,7 +9,7 @@ export const CartList: FC = () => {
   const totalCost = useSelector(totalAmount)
   return (
     <>
-    <div className="grid grid-cols-1 gap-6 px-8 pt-32">
+    <div className="grid grid-cols-1 gap-6 px-8">
       {cart.length > 0 ? (
         cart.map(item => <CartItem item={item} key={item.sku} />)
       ) : (

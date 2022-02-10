@@ -1,14 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../../service/Api";
+import { clearCart } from "../cart/cartSlice";
 
 export interface ProductsSlice {
   products: ProductItemType[];
   loading: boolean;
+  message:string; 
+  failure?:boolean;
 }
 
 const initialState: ProductsSlice = {
   products: [],
   loading: false,
+  message:""
 };
 
 export const getUnreliableProducts = createAsyncThunk(
@@ -64,12 +68,14 @@ export const productsSlice = createSlice({
       // action creato for checkOutProducts
       .addCase(checkOutProducts.fulfilled, (state, action) => {
         state.loading = false;
+        state.message=action.payload.msg
+       
       })
       .addCase(checkOutProducts.pending, (state) => {
         state.loading = true;
       })
       .addCase(checkOutProducts.rejected, (state, action) => {
-        state.loading = false;
+        state.loading = false;  
       })
       
       ;
