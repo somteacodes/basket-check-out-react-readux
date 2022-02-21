@@ -40,7 +40,7 @@ export const cartSlice = createSlice({
       );
       if (productIndex >= 0) state.splice(productIndex, 1);
     },
-    clearCart:state=> state=initialState    
+     
   },
 });
 
@@ -60,6 +60,6 @@ export const cartItemsCount = (state: RootState) => {
   return count;
 };
 
-export const { addProduct, removeOneProduct, updateAmount, removeAllProduct, clearCart } = cartSlice.actions;
+export const { addProduct, removeOneProduct, updateAmount, removeAllProduct } = cartSlice.actions;
 
 export default cartSlice.reducer;

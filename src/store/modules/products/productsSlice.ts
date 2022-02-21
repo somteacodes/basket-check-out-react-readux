@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../../service/Api";
-import { clearCart } from "../cart/cartSlice";
+ 
 
 export interface ProductsSlice {
   products: ProductItemType[];
@@ -49,6 +49,7 @@ export const productsSlice = createSlice({
       .addCase(getProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.products = action.payload;
+       
       })
       .addCase(getProducts.rejected, (state, action) => {
         state.loading = false;
