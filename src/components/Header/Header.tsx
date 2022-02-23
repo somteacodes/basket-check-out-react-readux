@@ -11,9 +11,9 @@ export const Header = () => {
 
   const location = useLocation();
   const dispatch = useDispatch<AppDispatch>();
-  // const addProductClickHandler = ()=>{
-  //   dispatch(addRandomProduct)
-  // }
+  const addProductClickHandler = ()=>{
+    dispatch(addRandomProduct())
+  }
 
   return (
     <div className="h-20 bg-yellow-200 w-full px-8 ">
@@ -21,7 +21,7 @@ export const Header = () => {
       <Button
       background="bg-cyan-600"
       color="text-white"
-      onClick={()=>dispatch(addRandomProduct())}
+      onClick={addProductClickHandler}
       >
         Add Product
       </Button>
