@@ -2,12 +2,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { cartItemsCount, totalAmount } from "../../store/modules/cart/cartSlice";
 import { addRandomProduct } from "../../store/modules/products/productsSlice";
-import { AppDispatch } from "../../store/store";
+import { AppDispatch, RootState } from "../../store/store";
 import { Button } from "../Button/Button";
 
 export const Header = () => {
   const cartCount = useSelector(cartItemsCount);
   const totalCost = useSelector(totalAmount);
+  const {
+    products: { products },
+  } = useSelector((state: RootState) => state);
 
   const location = useLocation();
   const dispatch = useDispatch<AppDispatch>();
@@ -21,6 +24,7 @@ export const Header = () => {
       <Button
       background="bg-cyan-600"
       color="text-white"
+      disabled={products.length<=0}
       onClick={addProductClickHandler}
       >
         Add Product
