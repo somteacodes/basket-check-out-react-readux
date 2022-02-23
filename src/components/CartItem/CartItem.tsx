@@ -1,3 +1,5 @@
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChangeEvent, FC } from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -64,6 +66,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
           color="text-white"
           onClick={() => removeAllProductClickHandler(item)}
         >
+           <FontAwesomeIcon icon={faTrash} className="text-white pr-3" />
           Remove All
         </Button>
       </div>

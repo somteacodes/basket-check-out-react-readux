@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProduct, removeOneProduct } from "../../store/modules/cart/cartSlice";
 import { AppDispatch, RootState } from "../../store/store";
 import { Button } from "../Button/Button";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrash ,
+  faCartPlus
+} from "@fortawesome/free-solid-svg-icons"
 type ProductItemProps = {
   item: ProductItemType;
 };
@@ -55,6 +59,7 @@ export const ProductItem: FC<ProductItemProps> = ({ item }) => {
           disabled={itemAmount[item.sku] >= item.basketLimit && true}
           onClick={() => addToCartHandler(item)}
         >
+            <FontAwesomeIcon icon={faCartPlus} className="text-black pr-3" />
           Add to basket
         </Button>
         <Button
@@ -64,6 +69,7 @@ export const ProductItem: FC<ProductItemProps> = ({ item }) => {
           disabled={!itemAmount[item.sku] && true}
           onClick={() => removeFromCartHandler(item)}
         >
+          <FontAwesomeIcon icon={faTrash} className="text-white pr-3" />
           Remove
         </Button>
       </div>

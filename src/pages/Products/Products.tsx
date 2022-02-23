@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button/Button";
 import { ProductList } from "../../components/ProductList/ProductList";
 import { RootState } from "../../store/store";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
 export const Product: FC = () => {
   const { cart } = useSelector((state: RootState) => state);
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ export const Product: FC = () => {
             disabled={cart.length <= 0}
             onClick={() => toCheckOut()}
           >
+             <FontAwesomeIcon icon={faCartPlus} className="text-white pr-3" />
             Proceed to cart
           </Button>
         

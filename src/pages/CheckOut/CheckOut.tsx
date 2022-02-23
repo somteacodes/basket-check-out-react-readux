@@ -9,6 +9,11 @@ import { cartItemsCount } from "../../store/modules/cart/cartSlice";
 import { checkOutProducts } from "../../store/modules/products/productsSlice";
 import { AppDispatch, RootState } from "../../store/store";
 import { luhnCheck } from "../../utils/luhn_check";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faWallet,
+  faCartFlatbedSuitcase,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const CheckOut: FC = () => {
   const [cardNumber, setCardNumber] = useState("");
@@ -20,7 +25,7 @@ export const CheckOut: FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const {
-    products: { loading , message},
+    products: { loading, message },
   } = useSelector((state: RootState) => state);
 
   const checkOutClickHandler = () => {
@@ -39,8 +44,8 @@ export const CheckOut: FC = () => {
 
   const cardNumberTextFieldHandler = (e: ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value;
-      const isNumber = value.match(/[0-9\b]+$/g)
-      if(isNumber) setCardNumber(value);
+    const isNumber = value.match(/[0-9\b]+$/g);
+    if (isNumber) setCardNumber(value);
   };
 
   const toProductList = () => {
@@ -50,7 +55,7 @@ export const CheckOut: FC = () => {
   return (
     <div className="bg-gray-100 min-h-screen pt-20">
       <Loading show={loading} />
-     <Notification message={message}/>
+      <Notification message={message} />
       <div className="flex lg:space-x-4 lg:flex-row flex-col space-y-4 lg:space-y-0 p-6">
         <div className="lg:w-3/4 w-full ">
           <CartList />
@@ -86,6 +91,10 @@ export const CheckOut: FC = () => {
                 disabled={!canCheckOut}
                 onClick={() => checkOutClickHandler()}
               >
+                <FontAwesomeIcon
+                  icon={faCartFlatbedSuitcase}
+                  className="text-white pr-3"
+                />
                 Checkout
               </Button>
               <Button
@@ -94,6 +103,7 @@ export const CheckOut: FC = () => {
                 testid="continue-shopping"
                 onClick={() => toProductList()}
               >
+                <FontAwesomeIcon icon={faWallet} className="text-white pr-3" />
                 Continue Shopping
               </Button>
             </div>
