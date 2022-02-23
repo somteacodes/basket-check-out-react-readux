@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 
-const initialState: ProductItemType[] = [];
+const initialState: ProductItemType[] = JSON.parse(localStorage.getItem('cart')||'[]');
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -16,6 +16,8 @@ export const cartSlice = createSlice({
       } else {
         state.push({ ...action.payload, amount: 1 });
       }
+
+      localStorage.setItem('cart', JSON.stringify(state))
     },
     removeOneProduct: (state, action) => {
       const productIndex: any = state.findIndex(
@@ -26,19 +28,25 @@ export const cartSlice = createSlice({
       } else {
         state.splice(productIndex, 1);
       }
+      localStorage.setItem('cart', JSON.stringify(state))
+      
+
     },
     updateAmount: (state, action) => {
       const productIndex = state.findIndex(
         (product) => product.sku === action.payload.sku
       );
-      if (productIndex >= 0)
-        state[productIndex].amount! = Number(action.payload.amount);
+      if (productIndex >= 0){
+        state[productIndex].amount! = Number(action.payload.amount);}
+        localStorage.setItem('cart', JSON.stringify(state))
+        
     },
     removeAllProduct: (state, action) => {
       const productIndex: any = state.findIndex(
         (product: ProductItemType) => product.sku === action.payload.sku
       );
-      if (productIndex >= 0) state.splice(productIndex, 1);
+      if (productIndex >= 0) {state.splice(productIndex, 1);}
+      localStorage.setItem('cart', JSON.stringify(state))
     },
      
   },
