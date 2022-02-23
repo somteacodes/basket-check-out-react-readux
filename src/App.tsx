@@ -9,11 +9,11 @@ import { store } from "./store/store";
 function App() {
   return (
     <>
-    <Provider store={store}>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
-    </Provider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </Provider>
     </>
   );
 }

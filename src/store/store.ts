@@ -1,7 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import rootReduer from "./modules/rootReduer";
- 
-
 export const store = configureStore({
   reducer: rootReduer,
 });
