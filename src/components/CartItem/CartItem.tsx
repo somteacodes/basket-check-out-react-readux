@@ -46,7 +46,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
           <p className="text-lg font-bold">{item.name}</p>
           <p className="text-sm text-gray-700">Unit Price ${item.price}</p>
           <p className="text-lg font-bold">
-            Total Price ${item.price * item.amount!}
+            Total Price ${(item.price * item.amount!).toFixed(2)}
           </p>
           <div className="flex space-x-4 mt-2">
             <p>Quantity</p>
