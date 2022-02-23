@@ -40,7 +40,11 @@ export const CheckOut: FC = () => {
   const cardNumberTextFieldHandler = (e: ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value;
 
-    setCardNumber(value);
+      const isNumber = value.match(/[0-9\b]+$/g)
+      if(isNumber) setCardNumber(value);
+      
+   
+   
   };
 
   const toProductList = () => {
