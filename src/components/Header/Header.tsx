@@ -1,15 +1,31 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { cartItemsCount, totalAmount } from "../../store/modules/cart/cartSlice";
+import { addRandomProduct } from "../../store/modules/products/productsSlice";
+import { AppDispatch } from "../../store/store";
+import { Button } from "../Button/Button";
 
 export const Header = () => {
   const cartCount = useSelector(cartItemsCount);
   const totalCost = useSelector(totalAmount);
 
   const location = useLocation();
+  const dispatch = useDispatch<AppDispatch>();
+  // const addProductClickHandler = ()=>{
+  //   dispatch(addRandomProduct)
+  // }
 
   return (
     <div className="h-20 bg-yellow-200 w-full px-8 f">
+      <div className="flex justify-between items-center">
+      <Button
+      background="bg-gray-800"
+      color="text-white"
+      onClick={()=>dispatch(addRandomProduct())}
+     
+      >Add Product
+      </Button>
+
       <ul className="font-bold flex justify-end space-x-6 items-center h-full">
         <Link to="/cart">
           <li className="cursor-pointer rounded-full py px-4 bg-yellow-500 hover:bg-yellow-700">
@@ -25,6 +41,9 @@ export const Header = () => {
           </Link>
         )}
       </ul>
+
+      </div>
+     
     </div>
   );
 };

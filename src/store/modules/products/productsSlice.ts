@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { stat } from "fs/promises";
 import api from "../../../service/Api";
+import reducer from "../cart/cartSlice";
  
 
 export interface ProductsSlice {
@@ -40,7 +42,22 @@ export const checkOutProducts = createAsyncThunk(
 export const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    
+    addRandomProduct:((state)=>{
+      console.log('reached addRandomProduct action');
+      const productLength = state.products.length
+      const randomProduct:ProductItemType= {
+        "sku": productLength+1,
+        "name": `Product ${productLength+1}`,
+        "description": `"Product ${productLength+1} description"`,
+        "price": Number.parseFloat((Math.random()*5).toFixed(2)),
+       "basketLimit": Math.ceil(Math.random()*5)
+      }
+
+      state.products.push(randomProduct)
+    })
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getProducts.pending, (state) => {
@@ -81,6 +98,8 @@ export const productsSlice = createSlice({
       
       ;
   },
-});
 
+  
+});
+export const {addRandomProduct} = productsSlice.actions
 export default productsSlice.reducer;
