@@ -16,14 +16,14 @@ export const Header = () => {
   // }
 
   return (
-    <div className="h-20 bg-yellow-200 w-full px-8 f">
-      <div className="flex justify-between items-center">
+    <div className="h-20 bg-yellow-200 w-full px-8 ">
+      <div className="flex justify-between items-center h-full">
       <Button
-      background="bg-gray-800"
+      background="bg-cyan-600"
       color="text-white"
       onClick={()=>dispatch(addRandomProduct())}
-     
-      >Add Product
+      >
+        Add Product
       </Button>
 
       <ul className="font-bold flex justify-end space-x-6 items-center h-full">
