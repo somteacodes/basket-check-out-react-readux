@@ -21,9 +21,9 @@ export const Header = () => {
 
   return (
     <div className="h-20 bg-yellow-200 w-full px-8 ">
-      <div className="flex justify-between items-center h-full">
+      <div className={location.pathname==="/"? `flex justify-between items-center h-full`:`flex justify-end items-center h-full`}>
       
-      <Button
+     {location.pathname === "/" && <Button
       background="bg-cyan-600"
       color="text-white"
       disabled={products.length<=0}
@@ -32,9 +32,9 @@ export const Header = () => {
         <FontAwesomeIcon icon={faSquarePlus} className="text-white pr-3" />
    
         Add Product
-      </Button>
+      </Button>}
 
-      <ul className="font-bold flex justify-end space-x-6 items-center h-full">
+      <ul className="font-bold flex justify-end space-x-6 items-center h-full self-end">
         <Link to="/cart">
           <li className="cursor-pointer rounded-full py px-4 bg-yellow-500 hover:bg-yellow-700">
           <FontAwesomeIcon icon={faCartPlus} className="text-black pr-3" />

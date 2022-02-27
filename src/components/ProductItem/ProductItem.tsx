@@ -51,7 +51,7 @@ export const ProductItem: FC<ProductItemProps> = ({ item }) => {
           {itemAmount[item.sku]}
         </div>
       )}
-      <div className="flex lg:flex-col items-center lg:space-y-4 space-x-4 lg:space-x-0">
+      <div className="flex lg:flex-col items-end lg:space-y-4 space-x-4 lg:space-x-0">
         <Button
           testid={`add-${item.sku}`}
           background="bg-yellow-300"

@@ -17,7 +17,7 @@ export const Product: FC = () => {
           <ProductList />
         </div>
       </div>
-      <div className="fixed bottom-0 w-full p-6 bg-white bg-opacity-80 flex justify-end">
+      <div className="fixed bottom-0 w-full px-8 py-4 bg-white bg-opacity-80 flex justify-end">
          
           <Button
             background="bg-green-600"
