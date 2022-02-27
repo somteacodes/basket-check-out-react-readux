@@ -34,7 +34,7 @@ export const ProductItem: FC<ProductItemProps> = ({ item }) => {
     >
       <div className="flex lg:flex-1 w-full space-x-4">
         <img
-          src={item.image || `https://picsum.photos/200`}
+          src={item.image || `https://picsum.photos/${Math.round(Math.random()*100)}`}
           alt={item.name}
           className="w-20 h-20 rounded-lg"
         />
